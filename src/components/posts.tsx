@@ -13,6 +13,13 @@ const Posts = ({ ...props }) => {
         }
 
         <Reactions />
+
+        <button
+          className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
+          type={"button"}
+        >
+          Add Reaction
+        </button>
       </div>
     </>
   )
