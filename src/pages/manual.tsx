@@ -128,6 +128,41 @@ const Manual = () => {
               }}
             >
               {/* ... (button and Reactions components) */}
+              {post.reactions.map((r: any, ind: any) => {
+                return (
+                  <Reactions
+                    Reactions={reactions}
+                    key={ind}
+                    Re={r.reaction}
+                    Comment={r.comment}
+                    Change={(e: any) => {
+                      const updatedPosts = [...posts]
+                      updatedPosts[index].reactions[ind].comment =
+                        e.target.value
+                      setPosts(updatedPosts)
+                    }}
+                    Option={(e: any) => {
+                      const updatedPosts = [...posts]
+                      updatedPosts[index].reactions[ind].reaction =
+                        e.target.value
+                      setPosts(updatedPosts)
+                    }}
+                    Show={() => {
+                      setPop({
+                        display: "flex",
+                        data: {
+                          name: "",
+                          link: "",
+                          mail: "",
+                          desc: "",
+                          spec: "",
+                          ind: "",
+                        },
+                      })
+                    }}
+                  />
+                )
+              })}
               <button
                 className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
                 type={"button"}
@@ -150,9 +185,6 @@ const Manual = () => {
               >
                 Add Reaction
               </button>
-              {post.reactions.map((r: any, ind: any) => {
-                return <Reactions RCon={reactions} key={ind} />
-              })}
             </Posts>
           )
         })}
@@ -183,7 +215,21 @@ const Manual = () => {
         </button>
       </div>
 
-      <PopSmoke Display={pop.display} Data={pop.data} />
+      <PopSmoke
+        Display={
+          pop.display
+          //"flex"
+        }
+        Data={pop.data}
+        OnClose={() => {
+          setPop({
+            display: "none",
+            data: {},
+          })
+        }}
+      >
+        hello
+      </PopSmoke>
     </main>
   )
 }

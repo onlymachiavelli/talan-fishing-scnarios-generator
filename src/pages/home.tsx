@@ -20,7 +20,12 @@ const Home = () => {
         }}
       />
 
-      <Link to={""}>Start Hunting</Link>
+      <Link
+        className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow flex items-center justify-center"
+        to={"/manual"}
+      >
+        Start Hunting
+      </Link>
     </main>
   )
 }

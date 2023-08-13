@@ -8,6 +8,8 @@ const useCollect = () => {
   const [spec, setSpec] = React.useState("")
   const [ind, setInd] = React.useState("")
 
+  //person infromation
+
   const Generate = async () => {}
 
   return {
