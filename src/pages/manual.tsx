@@ -4,7 +4,7 @@ import PopSmoke from "../components/PopUp"
 import useCollect from "../hooks/useCollector"
 import Reactions from "../components/Reactions"
 const Manual = () => {
-  const [pop, setPop] = React.useState({
+  const [pop, setPop]: any = React.useState({
     display: "none",
     data: {},
   })
@@ -32,7 +32,6 @@ const Manual = () => {
       
    }
    */
-  const [posts, setPosts]: any = React.useState([])
 
   const {
     name,
@@ -48,6 +47,23 @@ const Manual = () => {
     setDesc,
     setSpec,
     setInd,
+
+    //things
+    Fullname,
+    Email,
+    Profile,
+    industries,
+    specialization,
+    description,
+    setFName,
+    setEmail,
+    setProfile,
+    setIndu,
+    setSpeci,
+    setDescription,
+    posts,
+    setPosts,
+    Generate,
   } = useCollect()
 
   const [reactions, setReactions]: any = React.useState([
@@ -114,49 +130,46 @@ const Manual = () => {
           />
         </div>
 
-        {posts.map((post: any, index: any) => {
+        {posts.map((post: any, postIndex: any) => {
           return (
             <Posts
-              key={index}
+              key={postIndex}
               RCon={reactions}
               Data={post}
               value={post.content}
               Change={(e: any) => {
                 const updatedPosts = [...posts]
-                updatedPosts[index].content = e.target.value
+                updatedPosts[postIndex].content = e.target.value
                 setPosts(updatedPosts)
               }}
             >
               {/* ... (button and Reactions components) */}
-              {post.reactions.map((r: any, ind: any) => {
+              {post.reactions.map((r: any, reactionIndex: any) => {
                 return (
                   <Reactions
                     Reactions={reactions}
-                    key={ind}
+                    key={reactionIndex}
                     Re={r.reaction}
                     Comment={r.comment}
                     Change={(e: any) => {
                       const updatedPosts = [...posts]
-                      updatedPosts[index].reactions[ind].comment =
+                      updatedPosts[postIndex].reactions[reactionIndex].comment =
                         e.target.value
                       setPosts(updatedPosts)
                     }}
                     Option={(e: any) => {
                       const updatedPosts = [...posts]
-                      updatedPosts[index].reactions[ind].reaction =
-                        e.target.value
+                      updatedPosts[postIndex].reactions[
+                        reactionIndex
+                      ].reaction = e.target.value
                       setPosts(updatedPosts)
                     }}
                     Show={() => {
                       setPop({
                         display: "flex",
                         data: {
-                          name: "",
-                          link: "",
-                          mail: "",
-                          desc: "",
-                          spec: "",
-                          ind: "",
+                          postIndex: postIndex,
+                          reactionIndex: reactionIndex,
                         },
                       })
                     }}
@@ -168,7 +181,7 @@ const Manual = () => {
                 type={"button"}
                 onClick={() => {
                   const updatedPosts = [...posts]
-                  updatedPosts[index].reactions.push({
+                  updatedPosts[postIndex].reactions.push({
                     reaction: "",
                     comment: "",
                     person: {
@@ -188,7 +201,6 @@ const Manual = () => {
             </Posts>
           )
         })}
-
         <button
           className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
           type={"button"}
@@ -207,8 +219,8 @@ const Manual = () => {
         <button
           className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
           type={"button"}
-          onClick={() => {
-            console.log(posts)
+          onClick={async () => {
+            await Generate()
           }}
         >
           Kill Them
@@ -232,44 +244,71 @@ const Manual = () => {
           <input
             placeholder="Full Name"
             className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={Fullname}
+            onChange={(e) => setFName(e.target.value)}
           />
           <input
             placeholder="Profile Link"
             className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={Profile}
+            onChange={(e) => setProfile(e.target.value)}
           />
           <input
             placeholder="Email Address"
             className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={Email}
+            onChange={(e) => setEmail(e.target.value)}
           />{" "}
           <input
             placeholder="Industries"
             className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={industries}
+            onChange={(e) => setIndu(e.target.value)}
           />{" "}
           <input
             placeholder="Specialities"
             className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={specialization}
+            onChange={(e) => setSpeci(e.target.value)}
           />
           <textarea
             placeholder="Description"
             //value={props.Value}
             //onChange={props.Change}
             className="m-auto w-1/2 rounded border border-[#ffffff99] bg-[#273f4f] p-2 outline-none text-white text-sm py-4"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
           ></textarea>
           <button
             className="text-white w-2/12 py-3 bg-[#273f4f] m-auto  block rounded-full text-sm border border-[#ffffff99]  shadow"
             type={"button"}
             onClick={() => {
-              //close the popup
+              const updatedPosts = [...posts]
+              const currentReaction =
+                updatedPosts[pop.data.postIndex].reactions[
+                  pop.data.reactionIndex
+                ]
+
+              currentReaction.person = {
+                name: Fullname,
+                link: Profile,
+                mail: Email,
+                desc: description,
+                spec: specialization,
+                ind: industries,
+              }
+
+              setPosts(updatedPosts)
+              console.log("Updated posts", updatedPosts)
+
+              // Reset input fields and close the pop
+              setFName("")
+              setEmail("")
+              setProfile("")
+              setIndu("")
+              setSpeci("")
+              setDescription("")
+
               setPop({
                 display: "none",
                 data: {},

@@ -9,8 +9,31 @@ const useCollect = () => {
   const [ind, setInd] = React.useState("")
 
   //person infromation
+  const [posts, setPosts]: any = React.useState([])
+  const [Fullname, setFName] = React.useState("")
+  const [Email, setEmail] = React.useState("")
+  const [Profile, setProfile] = React.useState("")
+  const [industries, setIndu] = React.useState("")
+  const [specialization, setSpeci] = React.useState("")
+  const [description, setDescription] = React.useState("")
 
-  const Generate = async () => {}
+  const Generate = async () => {
+    const reqBody = {
+      company: {
+        name: name,
+        link: link,
+        mail: mail,
+        desc: desc,
+        spec: spec,
+        ind: ind,
+      },
+      posts: {
+        posts,
+      },
+    }
+
+    console.log(reqBody)
+  }
 
   return {
     name,
@@ -26,6 +49,23 @@ const useCollect = () => {
     setDesc,
     setSpec,
     setInd,
+
+    Fullname,
+    Email,
+    Profile,
+    industries,
+    specialization,
+    description,
+    setFName,
+    setEmail,
+    setProfile,
+    setIndu,
+    setSpeci,
+    setDescription,
+    posts,
+    setPosts,
+
+    Generate,
   }
 }
 
