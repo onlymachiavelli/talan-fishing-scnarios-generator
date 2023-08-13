@@ -2,6 +2,7 @@ import * as React from "react"
 import Posts from "../components/posts"
 import PopSmoke from "../components/PopUp"
 import useCollect from "../hooks/useCollector"
+import Reactions from "../components/Reactions"
 const Manual = () => {
   const [pop, setPop] = React.useState({
     display: "none",
@@ -118,17 +119,41 @@ const Manual = () => {
             <Posts
               key={index}
               RCon={reactions}
-              Data={post} // Pass the individual post object
-              AddReaction={() => {
+              Data={post}
+              value={post.content}
+              Change={(e: any) => {
                 const updatedPosts = [...posts]
-                updatedPosts[index].reactions.push({
-                  reaction: "",
-                  comment: "",
-                  person: {},
-                })
+                updatedPosts[index].content = e.target.value
                 setPosts(updatedPosts)
               }}
-            />
+            >
+              {/* ... (button and Reactions components) */}
+              <button
+                className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
+                type={"button"}
+                onClick={() => {
+                  const updatedPosts = [...posts]
+                  updatedPosts[index].reactions.push({
+                    reaction: "",
+                    comment: "",
+                    person: {
+                      name: "",
+                      link: "",
+                      mail: "",
+                      desc: "",
+                      spec: "",
+                      ind: "",
+                    },
+                  })
+                  setPosts(updatedPosts)
+                }}
+              >
+                Add Reaction
+              </button>
+              {post.reactions.map((r: any, ind: any) => {
+                return <Reactions RCon={reactions} key={ind} />
+              })}
+            </Posts>
           )
         })}
 
@@ -150,6 +175,9 @@ const Manual = () => {
         <button
           className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
           type={"button"}
+          onClick={() => {
+            console.log(posts)
+          }}
         >
           Kill Them
         </button>

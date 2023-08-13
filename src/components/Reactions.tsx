@@ -1,6 +1,6 @@
 const Reactions = ({ ...props }) => {
   return (
-    <div className="w-11/12 m-auto bg-[#273f4f] border border-[#ffffff99] rounded-full flex items-center p-3 mt-2 relative">
+    <div className="w-11/12 m-auto  bg-[#273f4f] border border-[#ffffff99] rounded-full flex items-center p-3 mt-10 relative">
       <select
         name=""
         id=""
