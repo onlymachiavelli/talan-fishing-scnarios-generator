@@ -226,8 +226,8 @@ const Manual = () => {
         >
           <option value="">Choose Scenario</option>
           <option value="email">Email</option>
-          <option value="linkedin">Linkedin Message</option>
-          <option value="phone">Phone</option>
+          <option value="linkedin message">Linkedin Message</option>
+          <option value="phone sms">Phone</option>
         </select>
         <button
           className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
