@@ -1,4 +1,4 @@
-import * as React from "react"
+//import * as React from "react"
 import * as Router from "react-router-dom"
 import Home from "./pages/home"
 import Auto from "./pages/auto"
