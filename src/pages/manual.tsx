@@ -12,11 +12,26 @@ const Manual = () => {
    Posts schema 
    {
       content : String 
-      Reactions 
+      Reactions :[
+
+          {
+          
+          reaction : String,
+          comment : String,
+          person : {
+              name : String,
+              link : String,
+              mail : String,
+              desc : String,
+              spec : String,
+              ind : String
+              }
+          }
+      ]
       
    }
    */
-  const [posts, setPosts] = React.useState([])
+  const [posts, setPosts]: any = React.useState([])
 
   const {
     name,
@@ -33,6 +48,16 @@ const Manual = () => {
     setSpec,
     setInd,
   } = useCollect()
+
+  const [reactions, setReactions]: any = React.useState([
+    "Like",
+    "Love",
+    "Support",
+    "Funny",
+    "Insightful",
+    "Support",
+    "Celebrate",
+  ])
   return (
     <main className="w-full h-screen overflow-y-scroll bg-[#17252e] pb-10">
       <header className="w-full h-auto p-5 flex items-center border-b border-white">
@@ -88,9 +113,40 @@ const Manual = () => {
           />
         </div>
 
-        <Posts />
-        <Posts />
+        {posts.map((post: any, index: any) => {
+          return (
+            <Posts
+              key={index}
+              RCon={reactions}
+              Data={post} // Pass the individual post object
+              AddReaction={() => {
+                const updatedPosts = [...posts]
+                updatedPosts[index].reactions.push({
+                  reaction: "",
+                  comment: "",
+                  person: {},
+                })
+                setPosts(updatedPosts)
+              }}
+            />
+          )
+        })}
 
+        <button
+          className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
+          type={"button"}
+          onClick={() => {
+            setPosts([
+              ...posts,
+              {
+                content: "",
+                reactions: [],
+              },
+            ])
+          }}
+        >
+          Add Post
+        </button>
         <button
           className="text-white w-2/12 py-3 bg-[#273f4f] m-auto mt-10 block rounded-full text-sm border border-[#ffffff99]  shadow"
           type={"button"}

@@ -6,7 +6,14 @@ const Reactions = ({ ...props }) => {
         id=""
         className="bg-[#273f4f] text-white outline-none cursor-pointer"
       >
-        <option value="">Heart</option>
+        {props.Reactions &&
+          props.Reactions.map((reaction: any, ind: any) => {
+            return (
+              <option key={ind} value={reaction}>
+                {reaction}
+              </option>
+            )
+          })}
       </select>
 
       <input
