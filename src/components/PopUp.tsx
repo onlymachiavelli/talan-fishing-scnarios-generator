@@ -5,6 +5,11 @@ const PopSmoke = ({ ...props }) => {
       style={{
         display: props.Display,
       }}
+      onClick={(event: any) => {
+        if (event.target.classList.contains("bg-[#000000cb]")) {
+          props.OnClose()
+        }
+      }}
     >
       <div className="w-2/3  h-auto p-10 bg-[#273f4f] border border-[#ffffff93]  rounded shadow-xl">
         {props.children}

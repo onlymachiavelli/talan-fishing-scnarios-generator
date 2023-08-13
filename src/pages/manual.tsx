@@ -36,13 +36,13 @@ const Manual = () => {
 
   const {
     name,
-    link,
+    //link,
     mail,
     desc,
     spec,
     ind,
     setName,
-    setLink,
+    //setLink,
     setMail,
 
     setDesc,
@@ -64,7 +64,7 @@ const Manual = () => {
       <header className="w-full h-auto p-5 flex items-center border-b border-white">
         <p className="text-white   text-xl">John Wick The hunter</p>
       </header>
-      <div className="w-full h-auto">
+      <div className="w-full h-auto px-36">
         <div className="w-full h-auto flex items-center justify-center gap-3 px-10 py-5">
           <input
             placeholder="Enter the Company's name"
@@ -228,7 +228,57 @@ const Manual = () => {
           })
         }}
       >
-        hello
+        <div className="w-full h-auto flex items-center justify-center flex-col gap-4">
+          <input
+            placeholder="Full Name"
+            className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Profile Link"
+            className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            placeholder="Email Address"
+            className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />{" "}
+          <input
+            placeholder="Industries"
+            className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />{" "}
+          <input
+            placeholder="Specialities"
+            className="w-1/2 h-auto p-2 py-4 bg-[#273f4f] rounded shadow outline-none text-sm text-white border border-[#ffffff99]"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <textarea
+            placeholder="Description"
+            //value={props.Value}
+            //onChange={props.Change}
+            className="m-auto w-1/2 rounded border border-[#ffffff99] bg-[#273f4f] p-2 outline-none text-white text-sm py-4"
+          ></textarea>
+          <button
+            className="text-white w-2/12 py-3 bg-[#273f4f] m-auto  block rounded-full text-sm border border-[#ffffff99]  shadow"
+            type={"button"}
+            onClick={() => {
+              //close the popup
+              setPop({
+                display: "none",
+                data: {},
+              })
+            }}
+          >
+            Set Person
+          </button>
+        </div>
       </PopSmoke>
     </main>
   )
