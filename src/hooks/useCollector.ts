@@ -17,6 +17,9 @@ const useCollect = () => {
   const [specialization, setSpeci] = React.useState("")
   const [description, setDescription] = React.useState("")
 
+  //option
+  const [option, setOption] = React.useState("")
+
   const Generate = async () => {
     const reqBody = {
       company: {
@@ -30,6 +33,7 @@ const useCollect = () => {
       posts: {
         posts,
       },
+      scenario: option,
     }
 
     console.log(reqBody)
@@ -66,6 +70,9 @@ const useCollect = () => {
     setPosts,
 
     Generate,
+
+    option,
+    setOption,
   }
 }
 
